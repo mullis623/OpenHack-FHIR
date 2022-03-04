@@ -128,6 +128,10 @@ Active Directory is usually locked down at many customers as a securtiy best pra
    * The script will take about 10 minutes to complete. 
    * To check on the status of the deployment you can open the Azure Portal of the **Primary (Resource) AD** and you will see two resource groups will be created {ENVIRONMENTNAME} and {ENVIRONMENTNAME}-sof. 
 
+* Grant Admin Consent to your Service Client App Registration ({ENVIRONMENTNAME}-service-client):
+
+   * Azure AD --> App Registrations --> {ENVIRONMENTNAME}-service-client --> API permissions --> Grant admin consent for {DomainName}
+
 ### Option 2: Using Powershell
 
 * **Download the file** [fhir-server-samples](../Scripts/fhir-server-samples.zip) and unzip to local folder.

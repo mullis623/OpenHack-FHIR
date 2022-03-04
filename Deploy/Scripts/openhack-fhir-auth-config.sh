@@ -38,7 +38,7 @@ echo "Admin user created"
 
 # FHIR API App
 echo "FHIR API App Registraiton - START"
-fhirServiceUrl="https://${environmentName}.azurehealthcareapis.com"
+fhirServiceUrl="https://${environmentName}.${aadDomain}"
 fhirAppId=$(az ad app create --display-name $fhirServiceUrl --identifier-uris $fhirServiceUrl --app-roles '[{"allowedMemberTypes": ["User","Application"],"description": "globalAdmin","displayName": "globalAdmin","isEnabled": "true","value": "globalAdmin"}]' --query appId -o tsv)
 sleep 30
 fhirAppServicePrincipalObjectId=$(az ad sp create --id $fhirAppId --query objectId -o tsv)
@@ -50,7 +50,7 @@ echo "FHIR API App Registraiton - END"
 echo "Confidential Client App Registraiton - START"
 confidentialClientName="${environmentName}-confidential-client"
 
-confidentialAppUri="https://${environmentName}-confidential-client"
+confidentialAppUri="https://${environmentName}-confidential-client.${aadDomain}"
 replyUrls="https://${environmentName}dash.azurewebsites.net/.auth/login/aad/callback"
 confidentialClientId=$(az ad app create --display-name $confidentialClientName --identifier-uris $confidentialAppUri --reply-urls $replyUrls --query appId -o tsv) 
 sleep 30
@@ -72,7 +72,7 @@ echo "Confidential Client App Registraiton - END"
 
 # Service Client
 echo "Service Client App Registraiton - START"
-serviceClientAppId=$(az ad app create --display-name ${environmentName}-service-client --identifier-uris https://${environmentName}-service-client --reply-urls "https://www.getpostman.com/oauth2/callback" --query appId -o tsv)
+serviceClientAppId=$(az ad app create --display-name ${environmentName}-service-client --identifier-uris "https://${environmentName}-service-client.${aadDomain}" --reply-urls "https://www.getpostman.com/oauth2/callback" --query appId -o tsv)
 sleep 90
 az ad sp create --id $serviceClientAppId
 serviceClientAppSecret=$(az ad app credential reset --id $serviceClientAppId --credential-description "client-secret" --query password -o tsv)
@@ -81,7 +81,7 @@ az ad app permission add \
     --id $serviceClientAppId \
     --api $fhirAppId \
     --api-permissions $fhirAppGlobalAdminRoleObjectId=Role
-az ad app permission admin-consent --id $serviceClientAppId
+#az ad app permission admin-consent --id $serviceClientAppId
 
 az ad app permission add \
     --id $serviceClientAppId \
