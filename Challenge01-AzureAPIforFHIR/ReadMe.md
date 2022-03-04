@@ -211,10 +211,10 @@ Team Discussion: What FHIR entities and attributes do you feel will be critical 
       * This section shows how to generate health records with [Synthea](https://github.com/synthetichealth/synthea). 
       * Synthea requires [Java 8 JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html). Make sure to select the JDK and not the JRE install.
       * After successfull installation of Java 8...
-         * Option 2a: Manual Download: Download the [Synthea Jar File](https://github.com/synthetichealth/synthea/releases/download/master-branch-latest/synthea-with-dependencies.jar) 
+         * Option 2a: Manual Download: Download the [Synthea Jar File](https://github.com/synthetichealth/synthea/releases/download/v3.0.0/synthea-with-dependencies.jar) 
          * Option 2b: Script Download: Open command prompt and run the below command. The .jar file will be downloaded to directory you are running the command from. If this command fails, you can follow the [Basic Setup and Running](https://github.com/synthetichealth/synthea/wiki/Basic-Setup-and-Running) guide.
             ```cmd
-            curl -L https://github.com/synthetichealth/synthea/releases/download/master-branch-latest/synthea-with-dependencies.jar --output synthea-with-dependencies.jar
+            curl -L https://github.com/synthetichealth/synthea/releases/download/v3.0.0/synthea-with-dependencies.jar --output synthea-with-dependencies.jar
             ```
    * **Generate Data**:
       * Follow the instructions below to generate your synthetic data set. Note we are using the Covid19 module (-m "covid19") and generating a 50 person (-p 50) sample. 50 patients and related resources will be downloaded as json files to an output sub-folder.
