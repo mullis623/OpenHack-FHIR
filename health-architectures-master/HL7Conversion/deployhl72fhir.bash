@@ -278,7 +278,7 @@ echo "Starting HL72FHIR Workflow Platform deployment..."
 		#Deploy HL7 FHIR Converter
 		hl7converterinstance=$deployprefix$hl7convertername$RANDOM
 		echo "Deploying FHIR Converter ["$hl7converterinstance"] to resource group ["$hl7converterrg"]..."
-		stepresult=$(az group deployment create -g $hl7converterrg --template-uri https://raw.githubusercontent.com/microsoft/FHIR-Converter/master/deploy/default-azuredeploy.json --parameters serviceName=$hl7converterinstance --parameters apiKey=$hl7convertkey)
+		stepresult=$(az group deployment create -g $hl7converterrg --template-uri https://raw.githubusercontent.com/microsoft/FHIR-Converter/f1794bccd87aac618b475d8fd6770cbf278f676c/deploy/default-azuredeploy.json --parameters serviceName=$hl7converterinstance --parameters apiKey=$hl7convertkey)
 		echo "Deploying Custom Logic App Connector for FHIR Server..."
 		stepresult=$(az group deployment create -g $resourceGroupName --template-file hl7tofhir/LogicAppCustomConnectors/fhir_server_connect_template.json  --parameters fhirserverproxyhost=$faname".azurewebsites.net")
 		echo "Deploying Custom Logic App Connector for FHIR Converter..."
