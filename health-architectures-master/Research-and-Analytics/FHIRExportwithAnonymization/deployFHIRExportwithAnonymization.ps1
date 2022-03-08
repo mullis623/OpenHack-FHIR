@@ -131,8 +131,8 @@ if ($azContext.Account.Type -eq "User") {
         # External user accounts have UserPrincipalNames of the form:
         # myuser_outlook.com#EXT#@mytenant.onmicrosoft.com for a user with username myuser@outlook.com
         $tmpUserName = $azContext.Account.Id.Replace("@", "_")
-        $currentUser = Get-AzureADUser -Filter "startswith(UserPrincipalName, '${tmpUserName}')"
-        $currentObjectId = $currentUser.ObjectId
+        $currentUser = Get-AzADUser -Filter "startswith(UserPrincipalName, '${tmpUserName}')"
+        $currentObjectId = $currentUser.Id
     } else {
         $currentObjectId = $currentUser.Id
     }
