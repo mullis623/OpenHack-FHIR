@@ -83,7 +83,7 @@ Active Directory is usually locked down at many customers as a securtiy best pra
    ```
 * Run the below command to clone the Github that has the scripts
    ```bash
-   git clone -b main https://github.com/microsoft/OpenHack-FHIR.git
+   git clone -b main https://github.com/mullis623/OpenHack-FHIR.git
    ```
 * Click on **Open editor** in Cloud Shell menu.
    * Navigate to **OpenHack-FHIR --> Deploy --> Scripts**
